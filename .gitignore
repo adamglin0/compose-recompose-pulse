@@ -1,0 +1,8 @@
+.gradle/
+.kotlin/
+.idea/
+tmp/
+**/.gradle/
+**/.kotlin/
+**/build/
+recompose-pulse-gradle/build-included/
