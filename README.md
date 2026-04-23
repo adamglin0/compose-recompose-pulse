@@ -142,6 +142,25 @@ If you republish the same version, refresh dependencies in the consumer project:
 ./gradlew --refresh-dependencies compileKotlin
 ```
 
+## Release
+
+Push a tag prefixed with `v` to trigger the GitHub release workflow:
+
+```bash
+git tag v1.2.3
+git push origin v1.2.3
+```
+
+The workflow strips the leading `v` and publishes the remaining value as the Maven Central version. For example, `v1.2.3` publishes `1.2.3`, and `v1.2.3-beta01` publishes `1.2.3-beta01`.
+
+Configure these GitHub Actions repository secrets before releasing:
+
+- `GPG_KEY_CONTENTS`
+- `MAVEN_CENTRAL_PASSWORD`
+- `MAVEN_CENTRAL_USERNAME`
+- `SIGNING_KEY_ID`
+- `SIGNING_PASSWORD`
+
 ## Design Approach
 
 The project is split into four focused pieces:
