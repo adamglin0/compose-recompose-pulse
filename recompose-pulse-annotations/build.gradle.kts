@@ -5,7 +5,7 @@ import org.gradle.api.tasks.testing.Test
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
-    `maven-publish`
+    alias(libs.plugins.mavenPublish)
 }
 
 kotlin {
@@ -38,10 +38,4 @@ android {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
-}
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
 }

@@ -1,4 +1,6 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.MavenPublication
 
 data class PublishedModule(
     val artifactId: String,
@@ -62,16 +64,16 @@ allprojects {
 
 subprojects {
     val publishedModule = publishedModules[path] ?: return@subprojects
+    val isMavenLocalPublish = gradle.startParameter.taskNames.any { taskName ->
+        "MavenLocal" in taskName
+    }
 
     plugins.withId("com.vanniktech.maven.publish") {
         extensions.configure(MavenPublishBaseExtension::class.java) {
             publishToMavenCentral(automaticRelease = true)
-            signAllPublications()
-            coordinates(
-                project.group.toString(),
-                publishedModule.artifactId,
-                project.version.toString(),
-            )
+            if (!isMavenLocalPublish) {
+                signAllPublications()
+            }
             pom {
                 name.set(publishedModule.pomName)
                 description.set(publishedModule.pomDescription)
@@ -96,6 +98,12 @@ subprojects {
                     connection.set(rootProject.providers.gradleProperty("POM_SCM_CONNECTION"))
                     developerConnection.set(rootProject.providers.gradleProperty("POM_SCM_DEV_CONNECTION"))
                 }
+            }
+        }
+
+        extensions.configure(PublishingExtension::class.java) {
+            publications.withType(MavenPublication::class.java).configureEach {
+                version = project.version.toString()
             }
         }
     }

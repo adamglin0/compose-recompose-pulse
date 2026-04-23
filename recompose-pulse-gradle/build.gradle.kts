@@ -2,12 +2,15 @@ import org.gradle.api.tasks.testing.Test
 
 plugins {
     alias(libs.plugins.kotlinJvm)
+    alias(libs.plugins.mavenPublish)
     `java-gradle-plugin`
-    `maven-publish`
 }
 
 group = providers.gradleProperty("GROUP").orElse("com.adamglin").get()
-version = providers.gradleProperty("VERSION_NAME").orElse("0.1.1").get()
+version = providers.gradleProperty("releaseVersion")
+    .orElse(providers.gradleProperty("VERSION_NAME"))
+    .orElse("0.1.1")
+    .get()
 
 if (rootProject.name == "recompose-pulse-plugin-build") {
     layout.buildDirectory.set(layout.projectDirectory.dir("build-included"))
@@ -20,6 +23,8 @@ val generatePulseMetadataDir = layout.buildDirectory.dir(
 val generatePulseMetadata by tasks.registering {
     val outputDir = generatePulseMetadataDir
 
+    inputs.property("group", project.group.toString())
+    inputs.property("version", project.version.toString())
     outputs.dir(outputDir)
 
     doLast {
@@ -64,6 +69,12 @@ tasks.named("compileKotlin") {
     dependsOn(generatePulseMetadata)
 }
 
+tasks.configureEach {
+    if (name == "sourcesJar" || name == "kotlinSourcesJar") {
+        dependsOn(generatePulseMetadata)
+    }
+}
+
 gradlePlugin {
     plugins {
         create("recomposePulse") {
@@ -75,10 +86,4 @@ gradlePlugin {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
-}
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
 }
