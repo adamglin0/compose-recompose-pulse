@@ -16,19 +16,19 @@ dependencyResolutionManagement {
 
 rootProject.name = "compose-recompose-pulse"
 
-includeBuild("recompose-pulse-gradle") {
+includeBuild("gradle") {
     name = "recompose-pulse-plugin-build"
 
     dependencySubstitution {
-        substitute(module("com.adamglin:recompose-pulse-gradle"))
+        substitute(module("com.adamglin.recompose.pulse:gradle"))
             .using(project(":"))
     }
 }
 
 include(
-    ":recompose-pulse-annotations",
-    ":recompose-pulse-runtime",
-    ":recompose-pulse-compiler",
-    ":recompose-pulse-gradle",
+    ":annotations",
+    ":runtime",
+    ":compiler",
+    ":gradle",
     ":sample-desktop",
 )

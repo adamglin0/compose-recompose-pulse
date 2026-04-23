@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.adamglin:recompose-pulse-gradle:0.1.1")
+        classpath("com.adamglin.recompose.pulse:gradle:0.1.1")
     }
 }
 
@@ -19,7 +19,7 @@ plugins {
     alias(libs.plugins.kotlinCompose)
 }
 
-apply(plugin = "com.adamglin.recompose-pulse")
+apply(plugin = "com.adamglin.recompose.pulse")
 
 kotlin {
     jvmToolchain(17)

@@ -16,7 +16,7 @@ The current setup supports these Kotlin Multiplatform targets:
 - `jvm`
 
 The public package base is `com.adamglin.recompose.pulse`.
-The Gradle plugin id is `com.adamglin.recompose-pulse`.
+The Gradle plugin id is `com.adamglin.recompose.pulse`.
 
 ## Install
 
@@ -45,7 +45,7 @@ Then apply the plugin:
 
 ```kotlin
 plugins {
-    id("com.adamglin.recompose-pulse") version "0.1.1"
+    id("com.adamglin.recompose.pulse") version "0.1.1"
 }
 ```
 
@@ -53,8 +53,8 @@ If you only want the runtime APIs, you can depend on the libraries directly:
 
 ```kotlin
 dependencies {
-    implementation("com.adamglin:recompose-pulse-runtime:0.1.1")
-    implementation("com.adamglin:recompose-pulse-annotations:0.1.1")
+    implementation("com.adamglin.recompose.pulse:runtime:0.1.1")
+    implementation("com.adamglin.recompose.pulse:annotations:0.1.1")
 }
 ```
 
@@ -130,11 +130,11 @@ Publish all artifacts to your local Maven repository:
 
 This publishes the main coordinates:
 
-- `com.adamglin:recompose-pulse-annotations:0.1.1`
-- `com.adamglin:recompose-pulse-runtime:0.1.1`
-- `com.adamglin:recompose-pulse-compiler:0.1.1`
-- `com.adamglin:recompose-pulse-gradle:0.1.1`
-- plugin marker: `com.adamglin.recompose-pulse:com.adamglin.recompose-pulse.gradle.plugin:0.1.1`
+- `com.adamglin.recompose.pulse:annotations:0.1.1`
+- `com.adamglin.recompose.pulse:runtime:0.1.1`
+- `com.adamglin.recompose.pulse:compiler:0.1.1`
+- `com.adamglin.recompose.pulse:gradle:0.1.1`
+- plugin marker: `com.adamglin.recompose.pulse:com.adamglin.recompose.pulse.gradle.plugin:0.1.1`
 
 If you republish the same version, refresh dependencies in the consumer project:
 

@@ -9,23 +9,23 @@ data class PublishedModule(
 )
 
 val publishedModules = mapOf(
-    ":recompose-pulse-annotations" to PublishedModule(
-        artifactId = "recompose-pulse-annotations",
+    ":annotations" to PublishedModule(
+        artifactId = "annotations",
         pomName = "Compose Recompose Pulse Annotations",
         pomDescription = "Annotations for opting out of Compose Recompose Pulse instrumentation.",
     ),
-    ":recompose-pulse-runtime" to PublishedModule(
-        artifactId = "recompose-pulse-runtime",
+    ":runtime" to PublishedModule(
+        artifactId = "runtime",
         pomName = "Compose Recompose Pulse Runtime",
         pomDescription = "Runtime APIs and pulse overlay rendering for Compose Recompose Pulse.",
     ),
-    ":recompose-pulse-compiler" to PublishedModule(
-        artifactId = "recompose-pulse-compiler",
+    ":compiler" to PublishedModule(
+        artifactId = "compiler",
         pomName = "Compose Recompose Pulse Compiler",
         pomDescription = "Compiler plugin that injects Compose Recompose Pulse instrumentation.",
     ),
-    ":recompose-pulse-gradle" to PublishedModule(
-        artifactId = "recompose-pulse-gradle",
+    ":gradle" to PublishedModule(
+        artifactId = "gradle",
         pomName = "Compose Recompose Pulse Gradle Plugin",
         pomDescription = "Gradle plugin that wires Compose Recompose Pulse dependencies and compiler integration.",
     ),
@@ -52,12 +52,12 @@ allprojects {
 
     configurations.configureEach {
         resolutionStrategy.dependencySubstitution {
-            substitute(module("${project.group}:recompose-pulse-annotations"))
-                .using(project(":recompose-pulse-annotations"))
-            substitute(module("${project.group}:recompose-pulse-compiler"))
-                .using(project(":recompose-pulse-compiler"))
-            substitute(module("${project.group}:recompose-pulse-runtime"))
-                .using(project(":recompose-pulse-runtime"))
+            substitute(module("${project.group}:annotations"))
+                .using(project(":annotations"))
+            substitute(module("${project.group}:compiler"))
+                .using(project(":compiler"))
+            substitute(module("${project.group}:runtime"))
+                .using(project(":runtime"))
         }
     }
 }
