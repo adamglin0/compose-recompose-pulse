@@ -1,6 +1,6 @@
 # Compose Recompose Pulse
 
-Current version: `0.1.1`
+![Maven Central Version](https://img.shields.io/maven-central/v/com.adamglin.recompose.pulse/runtime)
 
 ## Introduce
 
@@ -45,18 +45,22 @@ Then apply the plugin:
 
 ```kotlin
 plugins {
-    id("com.adamglin.recompose.pulse") version "0.1.1"
+    id("com.adamglin.recompose.pulse") version "version"
 }
 ```
+![Maven Central Version](https://img.shields.io/maven-central/v/com.adamglin.recompose.pulse/runtime)
 
 If you only want the runtime APIs, you can depend on the libraries directly:
 
 ```kotlin
 dependencies {
-    implementation("com.adamglin.recompose.pulse:runtime:0.1.1")
-    implementation("com.adamglin.recompose.pulse:annotations:0.1.1")
+    implementation("com.adamglin.recompose.pulse:runtime:version")
+    implementation("com.adamglin.recompose.pulse:annotations:version")
 }
 ```
+
+![Maven Central Version](https://img.shields.io/maven-central/v/com.adamglin.recompose.pulse/runtime)
+
 
 ## Usage
 
